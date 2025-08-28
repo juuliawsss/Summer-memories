@@ -31,12 +31,22 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         Vector3 move = transform.right * horizontal + transform.forward * vertical;
+
+        // Only apply horizontal movement to move vector
         characterController.Move(move * moveSpeed * Time.deltaTime);
 
-        // Handle jumping
-        if (characterController.isGrounded && Input.GetKeyDown(KeyCode.Space))
+        // Ground check and reset vertical velocity if grounded
+        if (characterController.isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (velocity.y < 0)
+            {
+                velocity.y = -2f; // Small negative to keep grounded
+            }
+            // Handle jumping
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
         }
 
         // Apply gravity
