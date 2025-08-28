@@ -21,6 +21,12 @@ public class PlayerController : MonoBehaviour
         // Get the CharacterController component
         characterController = GetComponent<CharacterController>();
 
+        // Warn if cameraTransform is not assigned
+        if (cameraTransform == null)
+        {
+            Debug.LogWarning("PlayerController: cameraTransform is not assigned! Please assign your camera in the Inspector.");
+        }
+
         // Lock the cursor to the center of the screen
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -60,7 +66,15 @@ public class PlayerController : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        if (cameraTransform != null)
+        {
+            cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        }
+        else
+        {
+            // Optionally, warn every frame if not assigned (comment out if too spammy)
+            // Debug.LogWarning("PlayerController: cameraTransform is not assigned!");
+        }
         transform.Rotate(Vector3.up * mouseX);
     }
 }
