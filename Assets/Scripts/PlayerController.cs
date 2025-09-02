@@ -59,22 +59,28 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
 
-        // Handle camera rotation
+        // Handle camera rotation (free look)
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
         if (cameraTransform != null)
         {
-            cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            // Accumulate rotation
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+            // Get current y rotation
+            float yRotation = cameraTransform.localEulerAngles.y + mouseX;
+            // If yRotation goes above 360 or below 0, keep it in [0,360)
+            if (yRotation > 360f) yRotation -= 360f;
+            if (yRotation < 0f) yRotation += 360f;
+
+            cameraTransform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
         }
         else
         {
             // Optionally, warn every frame if not assigned (comment out if too spammy)
             // Debug.LogWarning("PlayerController: cameraTransform is not assigned!");
         }
-        transform.Rotate(Vector3.up * mouseX);
     }
 }
