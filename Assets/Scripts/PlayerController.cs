@@ -1,7 +1,11 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // Input System variables
+    private PlayerInput playerInput;
+    private InputAction moveAction;
     // Movement variables
     public float moveSpeed = 5f;
     public float jumpHeight = 2f;
@@ -18,6 +22,13 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        // Setup new Input System if available
+        playerInput = GetComponent<PlayerInput>();
+        if (playerInput != null)
+        {
+            moveAction = playerInput.actions["Move"];
+        }
+
         // Get the CharacterController component
         characterController = GetComponent<CharacterController>();
 
@@ -34,12 +45,32 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Handle movement
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        Vector3 move = transform.right * horizontal + transform.forward * vertical;
+        float horizontal = 0f;
+        float vertical = 0f;
 
-        // Only apply horizontal movement to move vector
-        characterController.Move(move * moveSpeed * Time.deltaTime);
+        // Use new Input System if available
+        if (moveAction != null)
+        {
+            Vector2 inputVec = moveAction.ReadValue<Vector2>();
+            horizontal = inputVec.x;
+            vertical = inputVec.y;
+        }
+        else
+        {
+            // Fallback to old Input Manager and WASD
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+            if (Mathf.Approximately(horizontal, 0f) && Mathf.Approximately(vertical, 0f))
+            {
+                if (Input.GetKey(KeyCode.A)) horizontal = -1f;
+                if (Input.GetKey(KeyCode.D)) horizontal = 1f;
+                if (Input.GetKey(KeyCode.W)) vertical = 1f;
+                if (Input.GetKey(KeyCode.S)) vertical = -1f;
+            }
+        }
+
+        Vector3 move = transform.right * horizontal + transform.forward * vertical;
+        Debug.Log($"Input: H={horizontal}, V={vertical}, Move={move}");
 
         // Ground check and reset vertical velocity if grounded
         if (characterController.isGrounded)
@@ -57,7 +88,20 @@ public class PlayerController : MonoBehaviour
 
         // Apply gravity
         velocity.y += gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
+
+        // Combine horizontal and vertical movement
+        Vector3 finalMove = move * moveSpeed;
+        finalMove.y = velocity.y;
+        characterController.Move(finalMove * Time.deltaTime);
+
+        // Prevent falling under the ground (y < 0)
+        if (transform.position.y < 0f)
+        {
+            Vector3 pos = transform.position;
+            pos.y = 0f;
+            transform.position = pos;
+            velocity.y = 0f;
+        }
 
         // Handle camera rotation (free look)
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
