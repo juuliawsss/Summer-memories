@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     // Camera variables
     public Transform cameraTransform;
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 10f;
 
     // Private variables
     private CharacterController characterController;
@@ -69,11 +69,40 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        Vector3 move = transform.right * horizontal + transform.forward * vertical;
+        // Use camera's forward and right for movement direction
+        Vector3 move = Vector3.zero;
+        if (cameraTransform != null)
+        {
+            Vector3 camForward = cameraTransform.forward;
+            Vector3 camRight = cameraTransform.right;
+            camForward.y = 0f; // Ignore vertical tilt
+            camRight.y = 0f;
+            camForward.Normalize();
+            camRight.Normalize();
+            move = camRight * horizontal + camForward * vertical;
+        }
+        else
+        {
+            // Fallback to player transform if camera not assigned
+            move = transform.right * horizontal + transform.forward * vertical;
+        }
         Debug.Log($"Input: H={horizontal}, V={vertical}, Move={move}");
 
-        // Ground check and reset vertical velocity if grounded
-        if (characterController.isGrounded)
+        // --- Ground check using Raycast and "Ground" tag ---
+        bool isGrounded = false;
+        RaycastHit hit;
+        // Cast a ray down from the center of the character
+        Vector3 rayOrigin = transform.position + Vector3.up * 0.1f;
+        if (Physics.Raycast(rayOrigin, Vector3.down, out hit, 0.3f))
+        {
+            if (hit.collider.CompareTag("ground"))
+            {
+                isGrounded = true;
+            }
+        }
+
+        // Reset vertical velocity if grounded
+        if (isGrounded)
         {
             if (velocity.y < 0)
             {
