@@ -599,6 +599,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Backyardcopy2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ebdc3566ce6209440ab5ee365e928940, type: 3}
+      propertyPath: m_TagString
+      value: ground
+      objectReference: {fileID: 0}
     - target: {fileID: 2214845740545928773, guid: ebdc3566ce6209440ab5ee365e928940, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -634,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 660756456195707686, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 660756456195707686, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: m_LocalPosition.z
@@ -676,9 +680,33 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 330585546}
+    - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: mouseSensitivity
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237136702050118132, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237136702050118132, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5237136702050118132, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5237136702050118132, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031553799387481251, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8031553799387481251, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: m_Center.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -94,15 +94,6 @@ public class PlayerController : MonoBehaviour
         finalMove.y = velocity.y;
         characterController.Move(finalMove * Time.deltaTime);
 
-        // Prevent falling under the ground (y < 0)
-        if (transform.position.y < 0f)
-        {
-            Vector3 pos = transform.position;
-            pos.y = 0f;
-            transform.position = pos;
-            velocity.y = 0f;
-        }
-
         // Handle camera rotation (free look)
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
