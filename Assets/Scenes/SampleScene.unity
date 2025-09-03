@@ -568,8 +568,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7554394268070979304, guid: ebdc3566ce6209440ab5ee365e928940, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7554394268070979304, guid: ebdc3566ce6209440ab5ee365e928940, type: 3}
       propertyPath: m_TagString
-      value: ground
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -6721199899274406942, guid: ebdc3566ce6209440ab5ee365e928940, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -601,7 +605,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ebdc3566ce6209440ab5ee365e928940, type: 3}
       propertyPath: m_TagString
-      value: ground
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 2214845740545928773, guid: ebdc3566ce6209440ab5ee365e928940, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -676,6 +680,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2554616586928882676, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2554616586928882676, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: cameraTransform
       value: 
@@ -710,7 +722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8031553799387481251, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: m_Center.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
