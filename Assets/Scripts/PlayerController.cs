@@ -59,15 +59,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             // Fallback to old Input Manager and WASD
-            horizontal = Input.GetAxis("Horizontal");
-            vertical = Input.GetAxis("Vertical");
-            if (Mathf.Approximately(horizontal, 0f) && Mathf.Approximately(vertical, 0f))
-            {
-                if (Input.GetKey(KeyCode.A)) horizontal = -1f;
-                if (Input.GetKey(KeyCode.D)) horizontal = 1f;
-                if (Input.GetKey(KeyCode.W)) vertical = 1f;
-                if (Input.GetKey(KeyCode.S)) vertical = -1f;
-            }
+            horizontal = 0f;
+            vertical = 0f;
+            if (Input.GetKey(KeyCode.A)) horizontal -= 1f;
+            if (Input.GetKey(KeyCode.D)) horizontal += 1f;
+            if (Input.GetKey(KeyCode.W)) vertical += 1f;
+            if (Input.GetKey(KeyCode.S)) vertical -= 1f;
         }
 
         // Use camera's forward and right for movement direction
