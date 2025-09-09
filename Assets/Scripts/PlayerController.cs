@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 velocity;
     private float xRotation = 0f;
+    private float yRotation = 0f; // Add this at the top with other private variables
 
     void Start()
     {
@@ -124,27 +125,19 @@ public class PlayerController : MonoBehaviour
         characterController.Move(finalMove * Time.deltaTime);
 
         // Handle camera rotation (free look)
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
+        // Rotate player horizontally (Y axis)
+        yRotation += mouseX;
+        transform.localRotation = Quaternion.Euler(0f, yRotation, 0f);
+
+        // Rotate camera vertically (X axis)
         if (cameraTransform != null)
         {
-            // Accumulate rotation
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-            // Get current y rotation
-            float yRotation = cameraTransform.localEulerAngles.y + mouseX;
-            // If yRotation goes above 360 or below 0, keep it in [0,360)
-            if (yRotation > 360f) yRotation -= 360f;
-            if (yRotation < 0f) yRotation += 360f;
-
             cameraTransform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
-        }
-        else
-        {
-            // Optionally, warn every frame if not assigned (comment out if too spammy)
-            // Debug.LogWarning("PlayerController: cameraTransform is not assigned!");
         }
     }
 }
