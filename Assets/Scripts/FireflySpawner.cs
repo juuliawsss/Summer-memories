@@ -46,7 +46,10 @@ public class FireflySpawner : MonoBehaviour
             attempts++;
         } while (!positionFound && attempts < 20);
 
-        GameObject newFirefly = Instantiate(fireflyPrefab, spawnPosition, Quaternion.identity);
-        fireflies.Add(newFirefly);
+        if (positionFound)
+        {
+            GameObject newFirefly = Instantiate(fireflyPrefab, spawnPosition, Quaternion.identity);
+            fireflies.Add(newFirefly);
+        }
     }
 }

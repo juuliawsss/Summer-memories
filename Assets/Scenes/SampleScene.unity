@@ -119,6 +119,23 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &121053943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2554616586928882676, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+  m_PrefabInstance: {fileID: 4264521127784237387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &121053951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121053943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eed58589ce3e624986bd2d38bab10d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,9 +363,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireflyPrefab: {fileID: 919132149155446097, guid: 0bf84648e9b893f4f83f0a04a4e2869c, type: 3}
-  spawnInterval: 2
+  spawnInterval: 5
   minDistance: 50
-  maxFireflies: 25
+  maxFireflies: 20
 --- !u!4 &1745720097
 Transform:
   m_ObjectHideFlags: 0
@@ -538,7 +555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: moveSpeed
-      value: 45
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: mouseSensitivity
@@ -547,7 +564,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2554616586928882676, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 121053951}
   m_SourcePrefab: {fileID: 100100000, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
