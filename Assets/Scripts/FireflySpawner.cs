@@ -49,6 +49,7 @@ public class FireflySpawner : MonoBehaviour
         if (positionFound)
         {
             GameObject newFirefly = Instantiate(fireflyPrefab, spawnPosition, Quaternion.identity);
+            newFirefly.tag = "Firefly"; // Ensure the tag is set on spawn
             fireflies.Add(newFirefly);
         }
     }
