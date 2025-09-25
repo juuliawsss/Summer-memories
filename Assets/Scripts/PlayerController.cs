@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform;
     public float mouseSensitivity = 10f;
 
+    // Joystick support
+    [Header("Joystick Support")]
+    public Vector2 joystickInput = Vector2.zero; // Set by Joystick script
+
     // Private variables
     private CharacterController characterController;
     private Vector3 velocity;
@@ -49,8 +53,14 @@ public class PlayerController : MonoBehaviour
         float horizontal = 0f;
         float vertical = 0f;
 
+        // Use joystick input if present
+        if (joystickInput != Vector2.zero)
+        {
+            horizontal = joystickInput.x;
+            vertical = joystickInput.y;
+        }
         // Use new Input System if available
-        if (moveAction != null)
+        else if (moveAction != null)
         {
             Vector2 inputVec = moveAction.ReadValue<Vector2>();
             horizontal = inputVec.x;
@@ -136,5 +146,11 @@ public class PlayerController : MonoBehaviour
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
             cameraTransform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
         }
+    }
+
+    // Call this from your Joystick script to update movement input
+    public void SetJoystickInput(Vector2 input)
+    {
+        joystickInput = input;
     }
 }
