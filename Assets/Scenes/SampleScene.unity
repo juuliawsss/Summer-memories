@@ -445,17 +445,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 88.704, z: 0}
---- !u!114 &121053945 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
-  m_PrefabInstance: {fileID: 4264521127784237387}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e2b34b765435194c8ce510e8fb1fd81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &239760121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2065,7 +2054,7 @@ Canvas:
   m_GameObject: {fileID: 1507927787}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 4264521127784237388}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -2450,7 +2439,7 @@ Transform:
   m_GameObject: {fileID: 1833328460}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.113961816, z: -0, w: 0.9934852}
-  m_LocalPosition: {x: 390.8, y: 161.9, z: -321.7}
+  m_LocalPosition: {x: 491, y: 78.7, z: -297.9}
   m_LocalScale: {x: 21.926332, y: 21.121601, z: 21.121601}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3065,7 +3054,7 @@ PrefabInstance:
     - target: {fileID: 8170153791668043271, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 5b56d9fa0e8bd6e409ed188db38a692c, type: 3}
     - target: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.0121
@@ -3095,7 +3084,7 @@ PrefabInstance:
       addedObject: {fileID: 2131616913}
     - targetCorrespondingSourceObject: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2131616914}
+      addedObject: {fileID: 2131616918}
   m_SourcePrefab: {fileID: 100100000, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
 --- !u!1 &2131616912 stripped
 GameObject:
@@ -3121,7 +3110,12 @@ MonoBehaviour:
   snapY: 0
   background: {fileID: 1917346026}
   handle: {fileID: 1976087073}
---- !u!114 &2131616914
+--- !u!224 &2131616917 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+  m_PrefabInstance: {fileID: 2131616911}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2131616918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3130,15 +3124,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2131616912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20a4ba274e8d04f45ba82399111e1bfb, type: 3}
+  m_Script: {fileID: 11500000, guid: 22e172b6336aedd4d91486b2bcb9fbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 121053945}
---- !u!224 &2131616917 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8170153791668043268, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
-  m_PrefabInstance: {fileID: 2131616911}
-  m_PrefabAsset: {fileID: 0}
+  joystick: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+  player: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
 --- !u!1001 &4264521127784237387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3210,6 +3200,14 @@ PrefabInstance:
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: moveSpeed
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: joystickInput.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
+      propertyPath: joystickInput.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: mouseSensitivity
