@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     [Header("Joystick Support")]
     public Vector2 joystickInput = Vector2.zero; // Set by Joystick script
 
+    // Add reference to FixedJoystick
+    public FixedJoystick fixedJoystick; // <-- Add this line
+
     // Private variables
     private CharacterController characterController;
     private Vector3 velocity;
@@ -54,6 +57,12 @@ public class PlayerController : MonoBehaviour
         float vertical = 0f;
 
         // Use joystick input if present
+        // Update joystickInput from FixedJoystick if assigned
+        if (fixedJoystick != null)
+        {
+            joystickInput = new Vector2(fixedJoystick.Horizontal, fixedJoystick.Vertical);
+        }
+
         if (joystickInput != Vector2.zero)
         {
             horizontal = joystickInput.x;
