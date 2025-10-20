@@ -3318,7 +3318,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2131616912}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
   m_Name: 
@@ -3405,7 +3405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: moveSpeed
-      value: 45
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: fixedJoystick
@@ -3417,11 +3417,11 @@ PrefabInstance:
       objectReference: {fileID: 1513407647}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: joystickInput.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: joystickInput.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: mouseSensitivity
