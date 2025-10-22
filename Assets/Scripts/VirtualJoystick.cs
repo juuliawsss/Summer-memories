@@ -4,6 +4,10 @@ public class VirtualJoystick : MonoBehaviour
 {
     // Reference to PlayerController to send joystick input
     public PlayerController playerController;
+    
+    // Public properties that PlayerController can read from
+    public float Horizontal { get; private set; }
+    public float Vertical { get; private set; }
 
     private Vector2 startTouchPosition;
     private Vector2 currentTouchPosition;
@@ -55,10 +59,8 @@ public class VirtualJoystick : MonoBehaviour
             }
         }
 
-        // Send joystick direction to PlayerController
-        if (playerController != null)
-        {
-            playerController.SetJoystickInput(direction);
-        }
+        // Update public properties that PlayerController can read
+        Horizontal = direction.x;
+        Vertical = direction.y;
     }
 }

@@ -913,17 +913,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 660756456195707686, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
   m_PrefabInstance: {fileID: 4264521127784237387}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &533589564 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
-  m_PrefabInstance: {fileID: 4264521127784237387}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e2b34b765435194c8ce510e8fb1fd81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &544575687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1194,9 +1183,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775441328}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.69026816, z: -0, w: 0.72355366}
-  m_LocalPosition: {x: 387.86493, y: -42.24717, z: 923.8323}
-  m_LocalScale: {x: 0.6695275, y: 0.6695453, z: 0.6615584}
+  m_LocalRotation: {x: -0, y: -0.6902681, z: -0, w: 0.7235537}
+  m_LocalPosition: {x: 390.99908, y: -42.24687, z: 921.3223}
+  m_LocalScale: {x: 0.66953427, y: 0.6695454, z: 0.6615517}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1917346026}
@@ -1749,12 +1738,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980433939}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.000000037252896, z: -0, w: 1}
-  m_LocalPosition: {x: -452.65903, y: 138.66959, z: -74.867165}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.017350797, z: -0, w: 0.9998495}
+  m_LocalPosition: {x: 5831.3604, y: 10847.406, z: -7043.525}
+  m_LocalScale: {x: 558.7378, y: 565.49036, z: 565.48206}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1917346026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &980433941
 MonoBehaviour:
@@ -1763,13 +1752,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980433939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 22e172b6336aedd4d91486b2bcb9fbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 8170153791668043265, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
-  player: {fileID: 533589564}
 --- !u!1 &1143005603 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0bf84648e9b893f4f83f0a04a4e2869c, type: 3}
@@ -2116,7 +2103,7 @@ Canvas:
   m_GameObject: {fileID: 1507927787}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 1513407646}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -3301,6 +3288,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       insertIndex: -1
       addedObject: {fileID: 775441331}
+    - targetCorrespondingSourceObject: {fileID: 8170153792821263258, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 980433940}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       insertIndex: -1
@@ -3318,7 +3308,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2131616912}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a47f546fc70ec8428172694e78e4288, type: 3}
   m_Name: 
@@ -3405,7 +3395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: moveSpeed
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: fixedJoystick
@@ -3417,11 +3407,11 @@ PrefabInstance:
       objectReference: {fileID: 1513407647}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: joystickInput.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: joystickInput.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: mouseSensitivity
@@ -3466,4 +3456,3 @@ SceneRoots:
   - {fileID: 1392469303}
   - {fileID: 5508792}
   - {fileID: 1507927791}
-  - {fileID: 980433940}
