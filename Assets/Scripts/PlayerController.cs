@@ -155,8 +155,8 @@ public class PlayerController : MonoBehaviour
             // Get input from camera joystick if assigned
             if (joystick_camera != null)
             {
-                mouseX = joystick_camera.Horizontal * mouseSensitivity * Time.deltaTime * 50f; // Multiplied by 50 to match mouse speed
-                mouseY = joystick_camera.Vertical * mouseSensitivity * Time.deltaTime * 50f;
+                mouseX = joystick_camera.Horizontal * mouseSensitivity * Time.deltaTime * 10f; // Lowered multiplier for slower camera
+                mouseY = joystick_camera.Vertical * mouseSensitivity * Time.deltaTime * 10f;
                 
                 // Debug camera joystick input
                 if (Mathf.Abs(joystick_camera.Horizontal) > 0.1f || Mathf.Abs(joystick_camera.Vertical) > 0.1f)
