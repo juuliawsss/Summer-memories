@@ -17,10 +17,9 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform;
     public float mouseSensitivity = 10f;
 
-    // Joystick support
-    [Header("Joystick Support")]
-    public FixedJoystick fixedJoystick;
-    public VirtualJoystick virtualJoystick;
+    // Add this reference to your joystick
+    public FixedJoystick joystick_move;
+    public FixedJoystick joystick_camera;
 
     // Private variables
     private CharacterController characterController;
@@ -58,73 +57,33 @@ public class PlayerController : MonoBehaviour
         float horizontal = 0f;
         float vertical = 0f;
 
-        Vector2 joystickVec = Vector2.zero;
-
-        // Check for FixedJoystick input
-        if (fixedJoystick != null)
+        // Get input from joystick if assigned
+        if (joystick_move != null)
         {
-            joystickVec = new Vector2(fixedJoystick.Horizontal, fixedJoystick.Vertical);
-            // Log joystick values every few seconds to see what's happening
-            if (Time.frameCount % 120 == 0)
+            horizontal = joystick_move.Horizontal;
+            vertical = joystick_move.Vertical;
+            
+            // Debug to see if joystick is working
+            if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f)
             {
-                Debug.Log($"FixedJoystick values: H={fixedJoystick.Horizontal:F3}, V={fixedJoystick.Vertical:F3}, Magnitude={joystickVec.magnitude:F3}");
+                Debug.Log($"Movement Joystick Input: X={horizontal:F2}, Y={vertical:F2}");
             }
         }
-        
-        // If FixedJoystick isn't providing significant input, check VirtualJoystick
-        if (joystickVec.magnitude <= 0.1f && virtualJoystick != null)
-        {
-            joystickVec = new Vector2(virtualJoystick.Horizontal, virtualJoystick.Vertical);
-        }
-
-        // Debug what input sources are available (only log occasionally to reduce spam)
-        if (Time.frameCount % 120 == 0) // Every 2 seconds at 60fps
-        {
-            Debug.Log($"FixedJoystick: {(fixedJoystick != null ? "Available" : "Null")}, VirtualJoystick: {(virtualJoystick != null ? "Available" : "Null")}, MoveAction: {(moveAction != null ? "Available" : "Null")}");
-        }
-        
-        // Use joystick if it's providing any input (lowered threshold)
-        if (joystickVec.magnitude > 0.01f)
-        {
-            horizontal = joystickVec.x;
-            vertical = joystickVec.y;
-            Debug.Log($"Using Joystick Input: {joystickVec}");
-        }
+        // Fallback to Input System if no joystick input
         else if (moveAction != null)
         {
             Vector2 inputVec = moveAction.ReadValue<Vector2>();
             horizontal = inputVec.x;
             vertical = inputVec.y;
-            if (inputVec.magnitude > 0.01f)
-            {
-                Debug.Log($"Using Input System: {inputVec}");
-            }
         }
-        else
+        // Keyboard fallback
+        else if (UnityEngine.InputSystem.Keyboard.current != null)
         {
-            // Keyboard fallback for testing (using Keyboard class which works with Input System)
-            horizontal = 0f;
-            vertical = 0f;
-            
-            if (UnityEngine.InputSystem.Keyboard.current != null)
-            {
-                var keyboard = UnityEngine.InputSystem.Keyboard.current;
-                if (keyboard.wKey.isPressed) vertical = 1f;
-                if (keyboard.sKey.isPressed) vertical = -1f;
-                if (keyboard.aKey.isPressed) horizontal = -1f;
-                if (keyboard.dKey.isPressed) horizontal = 1f;
-                
-                if (horizontal != 0 || vertical != 0)
-                {
-                    Debug.Log($"Using keyboard input: H={horizontal}, V={vertical}");
-                }
-            }
-            
-            // Only log "no input" occasionally to reduce spam
-            if (Time.frameCount % 120 == 0 && horizontal == 0 && vertical == 0)
-            {
-                Debug.Log("No input detected - try dragging the joystick or use WASD keys");
-            }
+            var keyboard = UnityEngine.InputSystem.Keyboard.current;
+            if (keyboard.wKey.isPressed) vertical = 1f;
+            if (keyboard.sKey.isPressed) vertical = -1f;
+            if (keyboard.aKey.isPressed) horizontal = -1f;
+            if (keyboard.dKey.isPressed) horizontal = 1f;
         }
 
         // Use camera's forward and right for movement direction
@@ -143,11 +102,6 @@ public class PlayerController : MonoBehaviour
         {
             // Fallback to player transform if camera not assigned
             move = transform.right * horizontal + transform.forward * vertical;
-        }
-        // Only log when there's actual input to reduce console spam
-        if (horizontal != 0 || vertical != 0 || joystickVec.magnitude > 0.01f)
-        {
-            Debug.Log($"Input: H={horizontal:F2}, V={vertical:F2}, JoystickMag={joystickVec.magnitude:F2}, Move={move}");
         }
 
         // --- Ground check using Raycast and "Ground" tag ---
@@ -184,7 +138,7 @@ public class PlayerController : MonoBehaviour
         Vector3 finalMove = move * moveSpeed;
         finalMove.y = velocity.y;
         
-        // Debug the final movement (reduce spam)
+        // Debug the final movement
         if (horizontal != 0 || vertical != 0)
         {
             Debug.Log($"Final Move: {finalMove}, Speed: {moveSpeed}, H={horizontal:F2}, V={vertical:F2}");
@@ -192,14 +146,26 @@ public class PlayerController : MonoBehaviour
         
         characterController.Move(finalMove * Time.deltaTime);
 
-        // Handle camera rotation with mouse
+        // Handle camera rotation with joystick or mouse
         if (cameraTransform != null)
         {
             float mouseX = 0f;
             float mouseY = 0f;
             
-            // Try Input System first
-            if (lookAction != null)
+            // Get input from camera joystick if assigned
+            if (joystick_camera != null)
+            {
+                mouseX = joystick_camera.Horizontal * mouseSensitivity * Time.deltaTime * 50f; // Multiplied by 50 to match mouse speed
+                mouseY = joystick_camera.Vertical * mouseSensitivity * Time.deltaTime * 50f;
+                
+                // Debug camera joystick input
+                if (Mathf.Abs(joystick_camera.Horizontal) > 0.1f || Mathf.Abs(joystick_camera.Vertical) > 0.1f)
+                {
+                    Debug.Log($"Camera Joystick Input: X={joystick_camera.Horizontal:F2}, Y={joystick_camera.Vertical:F2}");
+                }
+            }
+            // Fallback to Input System for mouse
+            else if (lookAction != null)
             {
                 Vector2 lookInput = lookAction.ReadValue<Vector2>();
                 mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
@@ -214,7 +180,7 @@ public class PlayerController : MonoBehaviour
                 mouseY = mouseDelta.y * mouseSensitivity * 0.01f;
             }
             
-            // Apply mouse rotation
+            // Apply rotation
             yRotation += mouseX;
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
@@ -226,6 +192,4 @@ public class PlayerController : MonoBehaviour
             cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
     }
-
-
 }
