@@ -155,8 +155,8 @@ public class PlayerController : MonoBehaviour
             // Get input from camera joystick if assigned
             if (joystick_camera != null)
             {
-                mouseX = joystick_camera.Horizontal * mouseSensitivity * Time.deltaTime * 5f; // Lowered multiplier for slower camera
-                mouseY = joystick_camera.Vertical * mouseSensitivity * Time.deltaTime * 5f;
+                mouseX = joystick_camera.Horizontal * mouseSensitivity * 0.5f; // Lower multiplier for smoother control
+                mouseY = joystick_camera.Vertical * mouseSensitivity * 0.5f;
 
                 // Optionally invert Y axis for typical camera control
                 mouseY = -mouseY;
