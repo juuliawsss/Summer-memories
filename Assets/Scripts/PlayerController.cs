@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private InputAction jumpAction;
     private InputAction lookAction;
     // Movement variables
-    public float moveSpeed = 5f;
+    public float moveSpeed = 10f;
     public float jumpHeight = 2f;
     public float gravity = -9.81f;
 
@@ -155,9 +155,12 @@ public class PlayerController : MonoBehaviour
             // Get input from camera joystick if assigned
             if (joystick_camera != null)
             {
-                mouseX = joystick_camera.Horizontal * mouseSensitivity * Time.deltaTime * 10f; // Lowered multiplier for slower camera
-                mouseY = joystick_camera.Vertical * mouseSensitivity * Time.deltaTime * 10f;
-                
+                mouseX = joystick_camera.Horizontal * mouseSensitivity * Time.deltaTime * 5f; // Lowered multiplier for slower camera
+                mouseY = joystick_camera.Vertical * mouseSensitivity * Time.deltaTime * 5f;
+
+                // Optionally invert Y axis for typical camera control
+                mouseY = -mouseY;
+
                 // Debug camera joystick input
                 if (Mathf.Abs(joystick_camera.Horizontal) > 0.1f || Mathf.Abs(joystick_camera.Vertical) > 0.1f)
                 {

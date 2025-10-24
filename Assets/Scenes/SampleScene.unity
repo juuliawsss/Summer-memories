@@ -4367,7 +4367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: moveSpeed
-      value: 45
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: fixedJoystick
@@ -4395,7 +4395,7 @@ PrefabInstance:
       objectReference: {fileID: 1448696627}
     - target: {fileID: 4455744539087688797, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
       propertyPath: mouseSensitivity
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5871757338761207257, guid: bcc84fad4d9a1784b8b7497c901ac188, type: 3}
